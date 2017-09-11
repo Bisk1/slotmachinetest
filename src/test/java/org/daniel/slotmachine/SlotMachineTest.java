@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,9 +22,18 @@ public class SlotMachineTest {
 
     @Before
     public void setUp() {
-        driver = new FirefoxDriver();
+        driver = getWebdriver();
         driver.manage().window().maximize();
         driver.get(URL);
+    }
+
+    private WebDriver getWebdriver() {
+        String browserStr = System.getProperty("browser");
+        switch (browserStr) {
+            case "firefox": return new FirefoxDriver();
+            case "chrome": return new ChromeDriver();
+            default: throw new RuntimeException("Unsupported browser: " + browserStr);
+        }
     }
 
     @After
