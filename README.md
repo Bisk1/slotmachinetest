@@ -1,4 +1,6 @@
 Command to run tests:
 mvn test
 
-Make sure you have at least Firefox 55
+Supports Firefox 53-55 and Chrome 59-61.
+
+Switch browser by "browser" property in pom.xml.
